@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link type="text/css" rel="stylesheet" href="./statics/stylesheets/utility.css">
+    <link type="text/css" rel="stylesheet" href="./statics/stylesheets/animations.css">
     <link type="text/css" rel="stylesheet" href="./statics/stylesheets/main.css">
 
     <title>Issue Tracker</title>
@@ -15,7 +16,7 @@
 <body class="main">
     <div class="container mx-auto flex flex-col">
         <h1 class="main_pageHeading accent">JS Issue Tracker</h1>
-        <form action="" class="container_form flex flex-col">
+        <form action="" class="container_form flex flex-col" id="form-body">
             <h2 class="container_containerHeading accent">Add New Issue</h2>
             <div class="container_form_inputGroup flex flex-col">
                 <label for="title_input" class="container_form_labels">Title</label>
@@ -45,187 +46,15 @@
             </div>
             <button type="submit" class="btn btn--add">Add +</button>
         </form>
-        <div class="container_issueDisplayCard_container flex flex-col">
-            <h2 class="container_containerHeading accent text-center">Available Issues</h2>
-            <div class="container_issueDisplayCard_cardsWrapper grid">
-                <div class="container_issueDisplayCard col-span-2 flex flex-col justify-center align-start">
-                    <span class="container_issueDisplayCard_issueID grid">
-                        <p class="container_issueDisplayCard_issueID_idText">Issue ID:&nbsp;&nbsp;</p>
-                        <a href="" target="_blank" rel="noopener noreferrer" class="container_issueDisplayCard_issueID_idLink">819260df-f611-5956-9c3f-0e916c7553aa</a>
-                        <button class="btn btn--openissue relative container_issueDisplayCard_issueStatusBtn">Open</button>
-                    </span>
-                    <h3 class="container_issueDisplayCard_issueTitle">Title of the Issue</h3>
-                    <p class="container_issueDisplayCard_issueDescription">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos dolores repellat, odio quam possimus ipsa mollitia, sapiente ea commodi tempore neque quibusdam similique? Animi earum minus, veritatis, unde ratione magnam vel aliquid corporis quisquam nostrum, alias deserunt modi asperiores debitis eius atque? Deleniti facere magnam laboriosam inventore numquam exercitationem doloremque.
-                    </p>
-                    <span class="container_issueDisplayCard_issueLevel med-issue flex align-center">
-                        <i class="container_issueDisplayCard_issueLevelMarker relative flex align-center justify-center"></i>
-                        <p class="container_issueDisplayCard_issueLevelText">Medium</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueAssignee flex align-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
-                        </svg>
-                        <p class="container_issueDisplayCard_issueAssigneeText">Kashyap</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueControllBtnContainer flex">
-                        <button class="btn btn--close container_issueDisplayCard_closeIssueBtn">Close</button>
-                        <button class="btn btn--delete container_issueDisplayCard_deleteIssueBtn">Delete</button>
-                    </span>
-                </div>
-                <div class="container_issueDisplayCard col-span-2 flex flex-col justify-center align-start">
-                    <span class="container_issueDisplayCard_issueID grid">
-                        <p class="container_issueDisplayCard_issueID_idText">Issue ID:&nbsp;&nbsp;</p>
-                        <a href="" target="_blank" rel="noopener noreferrer" class="container_issueDisplayCard_issueID_idLink">819260df-f611-5956-9c3f-0e916c7553aa</a>
-                        <button class="btn btn--openissue relative container_issueDisplayCard_issueStatusBtn">Open</button>
-                    </span>
-                    <h3 class="container_issueDisplayCard_issueTitle">Title of the Issue</h3>
-                    <p class="container_issueDisplayCard_issueDescription">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos dolores repellat, odio quam possimus ipsa mollitia, sapiente ea commodi tempore neque quibusdam similique? Animi earum minus, veritatis, unde ratione magnam vel aliquid corporis quisquam nostrum, alias deserunt modi asperiores debitis eius atque? Deleniti facere magnam laboriosam inventore numquam exercitationem doloremque.
-                    </p>
-                    <span class="container_issueDisplayCard_issueLevel sever-issue flex align-center">
-                        <i class="container_issueDisplayCard_issueLevelMarker relative flex align-center justify-center"></i>
-                        <p class="container_issueDisplayCard_issueLevelText">Sever</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueAssignee flex align-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
-                        </svg>
-                        <p class="container_issueDisplayCard_issueAssigneeText">Kashyap</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueControllBtnContainer flex">
-                        <button class="btn btn--close container_issueDisplayCard_closeIssueBtn">Close</button>
-                        <button class="btn btn--delete container_issueDisplayCard_deleteIssueBtn">Delete</button>
-                    </span>
-                </div>
-                <div class="container_issueDisplayCard col-span-2 flex flex-col justify-center align-start">
-                    <span class="container_issueDisplayCard_issueID grid">
-                        <p class="container_issueDisplayCard_issueID_idText">Issue ID:&nbsp;&nbsp;</p>
-                        <a href="" target="_blank" rel="noopener noreferrer" class="container_issueDisplayCard_issueID_idLink">819260df-f611-5956-9c3f-0e916c7553aa</a>
-                        <button class="btn btn--closedissue relative container_issueDisplayCard_issueStatusBtn">Closed</button>
-                    </span>
-                    <h3 class="container_issueDisplayCard_issueTitle">Title of the Issue</h3>
-                    <p class="container_issueDisplayCard_issueDescription">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos dolores repellat, odio quam possimus ipsa mollitia, sapiente ea commodi tempore neque quibusdam similique? Animi earum minus, veritatis, unde ratione magnam vel aliquid corporis quisquam nostrum, alias deserunt modi asperiores debitis eius atque? Deleniti facere magnam laboriosam inventore numquam exercitationem doloremque.
-                    </p>
-                    <span class="container_issueDisplayCard_issueLevel sever-issue flex align-center">
-                        <i class="container_issueDisplayCard_issueLevelMarker relative flex align-center justify-center"></i>
-                        <p class="container_issueDisplayCard_issueLevelText">Sever</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueAssignee flex align-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
-                        </svg>
-                        <p class="container_issueDisplayCard_issueAssigneeText">Kashyap</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueControllBtnContainer flex">
-                        <button class="btn btn--close container_issueDisplayCard_closeIssueBtn">Close</button>
-                        <button class="btn btn--delete container_issueDisplayCard_deleteIssueBtn">Delete</button>
-                    </span>
-                </div>
-                <div class="container_issueDisplayCard col-span-2 flex flex-col justify-center align-start">
-                    <span class="container_issueDisplayCard_issueID grid">
-                        <p class="container_issueDisplayCard_issueID_idText">Issue ID:&nbsp;&nbsp;</p>
-                        <a href="" target="_blank" rel="noopener noreferrer" class="container_issueDisplayCard_issueID_idLink">819260df-f611-5956-9c3f-0e916c7553aa</a>
-                        <button class="btn btn--openissue relative container_issueDisplayCard_issueStatusBtn">Open</button>
-                    </span>
-                    <h3 class="container_issueDisplayCard_issueTitle">Title of the Issue</h3>
-                    <p class="container_issueDisplayCard_issueDescription">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos dolores repellat, odio quam possimus ipsa mollitia, sapiente ea commodi tempore neque quibusdam similique? Animi earum minus, veritatis, unde ratione magnam vel aliquid corporis quisquam nostrum, alias deserunt modi asperiores debitis eius atque? Deleniti facere magnam laboriosam inventore numquam exercitationem doloremque.
-                    </p>
-                    <span class="container_issueDisplayCard_issueLevel hard-issue flex align-center">
-                        <i class="container_issueDisplayCard_issueLevelMarker relative flex align-center justify-center"></i>
-                        <p class="container_issueDisplayCard_issueLevelText">Hard</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueAssignee flex align-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
-                        </svg>
-                        <p class="container_issueDisplayCard_issueAssigneeText">Kashyap</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueControllBtnContainer flex">
-                        <button class="btn btn--close container_issueDisplayCard_closeIssueBtn">Close</button>
-                        <button class="btn btn--delete container_issueDisplayCard_deleteIssueBtn">Delete</button>
-                    </span>
-                </div>
-                <div class="container_issueDisplayCard col-span-2 flex flex-col justify-center align-start">
-                    <span class="container_issueDisplayCard_issueID  grid">
-                        <p class="container_issueDisplayCard_issueID_idText">Issue ID:&nbsp;&nbsp;</p>
-                        <a href="" target="_blank" rel="noopener noreferrer" class="container_issueDisplayCard_issueID_idLink">819260df-f611-5956-9c3f-0e916c7553aa</a>
-                        <button class="btn btn--openissue relative container_issueDisplayCard_issueStatusBtn">Open</button>
-                    </span>
-                    <h3 class="container_issueDisplayCard_issueTitle">Title of the Issue</h3>
-                    <p class="container_issueDisplayCard_issueDescription">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos dolores repellat, odio quam possimus ipsa mollitia, sapiente ea commodi tempore neque quibusdam similique? Animi earum minus, veritatis, unde ratione magnam vel aliquid corporis quisquam nostrum, alias deserunt modi asperiores debitis eius atque? Deleniti facere magnam laboriosam inventore numquam exercitationem doloremque.
-                    </p>
-                    <span class="container_issueDisplayCard_issueLevel hard-issue flex align-center">
-                        <i class="container_issueDisplayCard_issueLevelMarker relative flex align-center justify-center"></i>
-                        <p class="container_issueDisplayCard_issueLevelText">Hard</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueAssignee flex align-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
-                        </svg>
-                        <p class="container_issueDisplayCard_issueAssigneeText">Kashyap</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueControllBtnContainer flex">
-                        <button class="btn btn--close container_issueDisplayCard_closeIssueBtn">Close</button>
-                        <button class="btn btn--delete container_issueDisplayCard_deleteIssueBtn">Delete</button>
-                    </span>
-                </div>
-                <div class="container_issueDisplayCard col-span-2 flex flex-col justify-center align-start">
-                    <span class="container_issueDisplayCard_issueID grid">
-                        <p class="container_issueDisplayCard_issueID_idText">Issue ID:&nbsp;&nbsp;</p>
-                        <a href="" target="_blank" rel="noopener noreferrer" class="container_issueDisplayCard_issueID_idLink">819260df-f611-5956-9c3f-0e916c7553aa</a>
-                        <button class="btn btn--closedissue relative container_issueDisplayCard_issueStatusBtn">Closed</button>
-                    </span>
-                    <h3 class="container_issueDisplayCard_issueTitle">Title of the Issue</h3>
-                    <p class="container_issueDisplayCard_issueDescription">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos dolores repellat, odio quam possimus ipsa mollitia, sapiente ea commodi tempore neque quibusdam similique? Animi earum minus, veritatis, unde ratione magnam vel aliquid corporis quisquam nostrum, alias deserunt modi asperiores debitis eius atque? Deleniti facere magnam laboriosam inventore numquam exercitationem doloremque.
-                    </p>
-                    <span class="container_issueDisplayCard_issueLevel med-issue flex align-center">
-                        <i class="container_issueDisplayCard_issueLevelMarker relative flex align-center justify-center"></i>
-                        <p class="container_issueDisplayCard_issueLevelText">Medium</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueAssignee flex align-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
-                        </svg>
-                        <p class="container_issueDisplayCard_issueAssigneeText">Kashyap</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueControllBtnContainer flex">
-                        <button class="btn btn--close container_issueDisplayCard_closeIssueBtn">Close</button>
-                        <button class="btn btn--delete container_issueDisplayCard_deleteIssueBtn">Delete</button>
-                    </span>
-                </div>
-                <div class="container_issueDisplayCard col-span-2 flex flex-col justify-center align-start">
-                    <span class="container_issueDisplayCard_issueID grid">
-                        <p class="container_issueDisplayCard_issueID_idText">Issue ID:&nbsp;&nbsp;</p>
-                        <a href="" target="_blank" rel="noopener noreferrer" class="container_issueDisplayCard_issueID_idLink">819260df-f611-5956-9c3f-0e916c7553aa</a>
-                        <button class="btn btn--closedissue relative container_issueDisplayCard_issueStatusBtn">Closed</button>
-                    </span>
-                    <h3 class="container_issueDisplayCard_issueTitle">Title of the Issue</h3>
-                    <p class="container_issueDisplayCard_issueDescription">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos dolores repellat, odio quam possimus ipsa mollitia, sapiente ea commodi tempore neque quibusdam similique? Animi earum minus, veritatis, unde ratione magnam vel aliquid corporis quisquam nostrum, alias deserunt modi asperiores debitis eius atque? Deleniti facere magnam laboriosam inventore numquam exercitationem doloremque.
-                    </p>
-                    <span class="container_issueDisplayCard_issueLevel low-issue flex align-center">
-                        <i class="container_issueDisplayCard_issueLevelMarker relative flex align-center justify-center"></i>
-                        <p class="container_issueDisplayCard_issueLevelText">Low</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueAssignee flex align-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/>
-                        </svg>
-                        <p class="container_issueDisplayCard_issueAssigneeText">Kashyap</p>
-                    </span>
-                    <span class="container_issueDisplayCard_issueControllBtnContainer flex">
-                        <button class="btn btn--close container_issueDisplayCard_closeIssueBtn">Close</button>
-                        <button class="btn btn--delete container_issueDisplayCard_deleteIssueBtn">Delete</button>
-                    </span>
-                </div>
-            </div>
-        </div>
+        <div class="container_issueDisplayCard_container flex flex-col" id="container_issueDisplayCard_container"></div>
+        <p class="copyright_text">
+            &copy; 2022 - created by
+            <a href="https://github.com/kashyap1905" target="_blank" rel="noopener noreferrer">
+                Kashyap
+            </a>
+        </p>
     </div>
+    <script src="https://chancejs.com/chance.min.js"></script>
     <script src="https://kit.fontawesome.com/9cc0baf84d.js" crossorigin="anonymous"></script>
     <script type="module" src="./statics/scripts/script.js"></script>
 </body>
