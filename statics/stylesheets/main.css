@@ -17,22 +17,35 @@
 }
 
 .formSubmitModal_closeModalBtn {
-    right: 0.8rem;
-    top: 0.8rem;
+    aspect-ratio: 1;
+    width: 1.875rem;
+    border-radius: 50%;
+    background-color: hsl(var(--clr-form-bg));
+    right: -0.9rem;
+    top: -0.9rem;
 }
 
 .formSubmitModal_closeModalBtn svg {
+    fill: hsl(var(--clr-accent));
     aspect-ratio: 1;
-    width: 1.5rem;
+    width: 1.25rem;
 }
 
-.formSubmitModal_successIcon svg {
+.formSubmitModal_actionIcon svg {
+    display: none;
     aspect-ratio: 1;
     width: 3rem;
-    fill: hsl(var(--clr-openissue));
 }
 
-.formSubmitModal_successtext {
+.formSubmitModal_actionIcon svg.active {
+    display: block;
+}
+
+#addedIssue { fill: hsl(var(--clr-openissue)); }
+#closedIssue { fill: hsl(var(--clr-closedissue)); }
+#deletedIssue { fill: hsl(var(--clr-deletebtn)); }
+
+.formSubmitModal_actiontext {
     font-size: var(--fs-semibold);
     font-weight: var(--fw-600);
     color: hsl(var(--clr-openissue));
@@ -50,7 +63,7 @@
     animation: bounce-in 250ms linear;
 }
 
-.modal--open .formSubmitModal_successIcon {
+.modal--open .formSubmitModal_actionIcon {
     -moz-animation: zoom-in-out 1s linear infinite;
     -webkit-animation: zoom-in-out 1s linear infinite;
     animation: zoom-in-out 1s linear infinite;
@@ -155,6 +168,10 @@ p.container_containerHeading {
 }
 
 .container_issueDisplayCard_issueID_idLink {
+    /* max-width: 100%; */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     grid-area: url;
     margin-top: -5px;
 }

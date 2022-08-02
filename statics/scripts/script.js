@@ -1,38 +1,59 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-firestore.js";
+import db from './firebase.js'
+import {
+    collection,
+    getDocs,
+    addDoc,
+    deleteDoc,
+    doc,
+    updateDoc
+} from "https://www.gstatic.com/firebasejs/9.9.1/firebase-firestore.js";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBxKKkdHnrJwmF2xLd0n4xvJLZiigf450Y",
-    authDomain: "javascript-issue-tracker.firebaseapp.com",
-    projectId: "javascript-issue-tracker",
-    storageBucket: "javascript-issue-tracker.appspot.com",
-    messagingSenderId: "737088544776",
-    appId: "1:737088544776:web:824452d708139805bb71bd"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore();
 const collectionRef = collection(db, 'issues');
 
+const formSubmitModal = document.getElementById("main_formSubmitModal");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const issueHandlerIcons = document.querySelectorAll(".issueHandlerIcons");
+const modalActionTextPara = document.getElementById("formSubmitModal_actiontext");
+
+const setModalOpen = () => {
+    formSubmitModal.classList.add("modal--open");
+    formSubmitModal.classList.remove("modal--closed");
+
+    bodyElement.classList.remove("relative");
+    bodyElement.classList.add("fixed");
+}
 
 const setStatusClosed = (id) => {
-    console.log(id);
-    var issues = JSON.parse(localStorage.getItem("issues"));
-    for (var i = 0; i < issues.length; i++) { if (issues[i].id === id) { issues[i].status = "Closed"; } }
-    localStorage.setItem("issues", JSON.stringify(issues));
-    fetchIssues();
+    const docRef = doc(db, 'issues', id);
+    updateDoc(docRef, {
+        status: "Closed"
+    }).then(() => {
+        (document.getElementById("closedIssue")).classList.add("active");
+        modalActionTextPara.innerText = "Issue Closed Successfully!";
+        modalActionTextPara.style.color = "hsl(var(--clr-closedissue))";
+
+        setModalOpen();
+        fetchIssues();
+    }).catch((error) => {
+        console.error(error.message);
+    })
 }
 
 const deleteIssue = (id) => {
-    var issues = JSON.parse(localStorage.getItem("issues"));
-    var newIssueList = [];
-    for (var i = 0; i < issues.length; i++) { if (issues[i].id !== id) { newIssueList.push(issues[i]); } }
-    localStorage.setItem("issues", JSON.stringify(newIssueList));
-    fetchIssues();
+    const docRef = doc(db, 'issues', id);
+    deleteDoc(docRef).then(() => {
+        (document.getElementById("deletedIssue")).classList.add("active");
+        modalActionTextPara.innerText = "Issue Deleted Successfully!";
+        modalActionTextPara.style.color = "hsl(var(--clr-deletebtn))";
+
+        setModalOpen();
+        fetchIssues();
+    }).catch ((error) => {
+        console.error(error.message);
+    })
 }
 
 const displayIssueList = (issueList) => {
-    console.log(issueList);
     var issueDisplayContainer = document.getElementById("container_issueDisplayCard_container");
 
     if ((issueList) && (issueList.length > 0)) {
@@ -124,7 +145,14 @@ const fetchIssues = () => {
     })
 }
 
-document.body.onload = fetchIssues();
+window.addEventListener("load", () => {
+    fetchIssues();
+    for (let icons of issueHandlerIcons) {
+        if (icons.classList.contains("active")) {
+            icons.classList.remove("active");
+        }
+    }
+});
 
 const bodyElement = document.getElementById("main")
 const formElement = document.getElementById("form-body");
@@ -150,33 +178,29 @@ formElement.onsubmit = (e) => {
     addDoc(collectionRef, currentIssue).then(() => {
         formElement.reset();
 
-        formSubmitModal.classList.add("modal--open");
-        formSubmitModal.classList.remove("modal--closed");
+        (document.getElementById("addedIssue")).classList.add("active");
+        modalActionTextPara.innerText = "Issue Added Successfully!";
+        modalActionTextPara.style.color = "hsl(var(--clr-openissue))";
 
-        bodyElement.classList.remove("relative");
-        bodyElement.classList.add("fixed");
-
+        setModalOpen();
         fetchIssues();
     }).catch((error) => {
         console.error(error.message);
     })
 }
 
-const formSubmitModal = document.getElementById("main_formSubmitModal");
-const closeModalBtn = document.getElementById("closeModalBtn");
+[formSubmitModal, closeModalBtn].forEach((element) => {
+    element.onclick = function () {
+        formSubmitModal.classList.remove("modal--open");
+        formSubmitModal.classList.add("modal--closed");
 
-formSubmitModal.onclick = function () {
-    formSubmitModal.classList.remove("modal--open");
-    formSubmitModal.classList.add("modal--closed");
+        bodyElement.classList.add("relative");
+        bodyElement.classList.remove("fixed");
 
-    bodyElement.classList.add("relative");
-    bodyElement.classList.remove("fixed");
-}
-
-closeModalBtn.onclick = function () {
-    formSubmitModal.classList.remove("modal--open");
-    formSubmitModal.classList.add("modal--closed");
-
-    bodyElement.classList.add("relative");
-    bodyElement.classList.remove("fixed");
-}
+        for (let icons of issueHandlerIcons) {
+            if (icons.classList.contains("active")) {
+                icons.classList.remove("active");
+            }
+        }
+    }
+})

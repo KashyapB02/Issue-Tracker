@@ -9,7 +9,6 @@
     --fw-700: 700;
     --fw-900: 900;
 
-    --fs-extralight: ;
     --fs-light: 0.9rem;
     --fs-regular: 1rem;
     --fs-semibold: 1.35rem;
@@ -20,8 +19,6 @@
     --fs-h2: 1.8rem;
     --fs-h3: 1.5rem;
     --fs-h4: 1.2rem;
-    --fs-h5: ;
-    --fs-h6: ;
 
     --clr-white: 0 0% 100%;  /*--(#FFFFFF)--*/
     --clr-black: 0 0% 0%;  /*--(#000000)--*/
@@ -86,22 +83,14 @@ h1 { font-size: var(--fs-h1); }
 h2 { font-size: var(--fs-h2); }
 h3 { font-size: var(--fs-h3); }
 h4 { font-size: var(--fs-h4); }
-h5 { font-size: var(--fs-h5); }
-h6 { font-size: var(--fs-h6); }
 
 a {
-    width: max-content;
     height: fit-content;
     text-decoration: none;
     cursor: pointer;
     color: hsl(var(--clr-url));
     border-bottom: 1px solid hsl(var(--clr-url));
     position: relative;
-}
-
-textarea {
-    resize: none;
-    font: inherit;
 }
 
 input,
@@ -137,8 +126,6 @@ input::-webkit-inner-spin-button {
 }
 
 input[type="number"] { -moz-appearance: textfield; }
-input[type="radio"],
-input[type="checkbox"] { cursor: pointer; }
 
 button {
     width: max-content;
@@ -347,6 +334,7 @@ nav { z-index: 99999; }
 }
 
 
+@media screen and (min-width: 400px) { a { width: max-content; } }
 @media screen and (min-width: 450px) {}
 @media screen and (min-width: 540px) {}
 @media screen and (min-width: 768px) {}
