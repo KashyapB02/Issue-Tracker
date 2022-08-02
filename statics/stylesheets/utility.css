@@ -283,6 +283,8 @@ nav { z-index: 99999; }
 
 .absolute { position: absolute; }
 .relative { position: relative; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
 
 .uppercase { text-transform: uppercase; }
 .lowercase { text-transform: lowercase; }

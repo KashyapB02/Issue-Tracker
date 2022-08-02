@@ -1,3 +1,63 @@
+.main_formSubmitModal {
+    min-height: 100vh;
+    inset: 0;
+    backdrop-filter: blur(1px);
+    background-color: hsl(var(--clr-black) / 0.25);
+    z-index: 99;
+}
+
+.formSubmitModal_submitMessageWrapper {
+    aspect-ratio: 2;
+    width: 90%;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: hsl(var(--clr-white));
+    border-radius: 5px;
+    gap: 1rem;
+}
+
+.formSubmitModal_closeModalBtn {
+    right: 0.8rem;
+    top: 0.8rem;
+}
+
+.formSubmitModal_closeModalBtn svg {
+    aspect-ratio: 1;
+    width: 1.5rem;
+}
+
+.formSubmitModal_successIcon svg {
+    aspect-ratio: 1;
+    width: 3rem;
+    fill: hsl(var(--clr-openissue));
+}
+
+.formSubmitModal_successtext {
+    font-size: var(--fs-semibold);
+    font-weight: var(--fw-600);
+    color: hsl(var(--clr-openissue));
+}
+
+.modal--open {
+    -moz-animation: fadeIn 250ms linear;
+    -webkit-animation: fadeIn 250ms linear;
+    animation: fadeIn 250ms linear;
+}
+
+.modal--open .formSubmitModal_submitMessageWrapper {
+    -moz-animation: bounce-in 250ms linear;
+    -webkit-animation: bounce-in 250ms linear;
+    animation: bounce-in 250ms linear;
+}
+
+.modal--open .formSubmitModal_successIcon {
+    -moz-animation: zoom-in-out 1s linear infinite;
+    -webkit-animation: zoom-in-out 1s linear infinite;
+    animation: zoom-in-out 1s linear infinite;
+}
+
+.modal--closed { display: none; }
+
 .container {
     padding-block: 1.5rem;
     padding-inline: 1rem;
@@ -193,12 +253,15 @@ svg {
     .container_issueDisplayCard_issueID { grid-template-areas: "issue url url url url url status"; }
 }
 @media screen and (min-width: 1500px) {
+    .formSubmitModal_submitMessageWrapper { max-width: 480px; }
     .container { width: 1440px; }
 }
 @media screen and (min-width: 1920px) {
+    .formSubmitModal_submitMessageWrapper { max-width: 540px; }
     .container { width: 1800px; }
     .container_issueDisplayCard_issueID { grid-template-areas: "issue url url url url url url status"; }
 }
 @media screen and (min-width: 2500px) {
+    .formSubmitModal_submitMessageWrapper { max-width: 720px; }
     .container { width: 2400px; }
 }
