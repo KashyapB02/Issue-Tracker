@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link type="text/css" rel="stylesheet" href="../statics/stylesheets/utility.css">
+    <link type="text/css" rel="stylesheet" href="../statics/stylesheets/animations.css">
+    <link type="text/css" rel="stylesheet" href="../statics/stylesheets/auth.css">
+
+    <script type="module" src="../statics/scripts/auth.js"></script>
+
+    <title>Signup | Issue Tracker</title>
+</head>
+
+<body class="main flex align-center justify-center" id="main">
+    <div class="container grid">
+        <div class="main__container__illustrationContainer col-span-1 relative flex align-center">
+            <span class="main__container__illustrationContainer__logoText absolute flex align-center">
+                <p class="logoText-1 uppercase">Issue</p>
+                <p class="logoText-2 uppercase">Tracker</p>
+            </span>
+            <span class="main__container__illustration mx-auto">
+                <img src="../assets/authIllustration.png" alt="Illustration" class="illustrationImg">
+            </span>
+        </div>
+        <div class="main__container__authFormContainer col-span-1 flex flex-col">
+            <span class="main__container__authFormContainer__authFormIconContainer">
+                <img src="../assets/signup.png" alt="Signup" class="icons">
+            </span>
+            <h1 class="main__container__authFormContainerHeading accent">Let&apos;s Get Started</h1>
+            <p class="main__container__authFormContainer__loginTextContainer">
+                Already Have an Account?
+                <a href="./login.html" class="main__container__authFormContainer__loginPageLink">Log In &rarr;</a>
+            </p>
+            <div class="main__container__authFormContainer__authBtnsContainer flex">
+                <button type="button" class="authFormContainer__authBtns btn flex-1 flex align-center justify-center text-start mx-auto accent" id="googleSignupBtn">
+                    <img src="../assets/google.png" alt="Google">
+                    Sign Up With Google
+                </button>
+                <button type="button" class="authFormContainer__authBtns btn flex-1 flex align-center justify-center text-start mx-auto">
+                    <img src="../assets/phone.png" alt="Phone">
+                    Sign Up With Phone
+                </button>
+            </div>
+            <p class="main__container__authFormContainer__orText flex align-center uppercase accent">OR</p>
+            <form action="" class="main__container__authFormContainer__authForm flex flex-col flex-1" id="signUpForm">
+                <label for="nameInput" class="authForm__labels accent">Your Name</label>
+                <input type="text" name="nameInput" id="nameInput" class="authForm__inputs accent" placeholder="Your name here..." required autocomplete="off">
+                <label for="emailInput" class="authForm__labels accent">Email Address</label>
+                <input type="email" name="emailInput" id="emailInput" class="authForm__inputs accent" placeholder="youremailid@domain.com" required autocomplete="off">
+                <label for="passInput" class="authForm__labels accent">Password</label>
+                <input type="password" name="passInput" id="passInput" class="authForm__inputs accent" placeholder="Password here..." required autocomplete="off">
+                <button type="submit" class="authForm__submitBtn btn">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

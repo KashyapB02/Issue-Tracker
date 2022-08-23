@@ -26,26 +26,22 @@
     --clr-body-bg: 0 0% 96%;  /*--(#FDFDFD)--*/
     --clr-form-bg: 0 0% 93%;  /*--(#EEEEEE)--*/
     --clr-url: 217 84% 42%;  /*--(#1158C7)--*/
-
     --clr-input-text: 0 0% 33%; /*--(#555555)--*/
     --clr-input-border: 0 0% 80%;  /*--(#CCCCCC)--*/
-
     --clr-addbtn: 208 56% 46%;  /*--(#337AB7)--*/
     --clr-addbtn-border: 208 56% 41%;  /*--(#2E6DA4)--*/
-
     --clr-closebtn: 35 84% 62%;  /*--(#F0AD4E)--*/
     --clr-closebtn-border: 35 84% 57%;  /*--(#EEA236)--*/
-
     --clr-deletebtn: 2 64% 58%;  /*--(#D9534F)--*/
     --clr-deletebtn-border: 2 64% 53%;  /*--(#D43F3A)--*/
-
     --clr-openissue: 132 59% 33%;  /*--(#238636)--*/
     --clr-closedissue: 262 89% 71%;  /*--(#A371F7)--*/
-
     --clr-lowissue: 42 74% 57%;  /*--(#E3B341)--*/
     --clr-medissue: 41 72% 48%;  /*--(#D29922)--*/
     --clr-hardissue: 40 96% 32%;  /*--(#9E6A03)--*/
     --clr-severeissue: 21 73% 43%;  /*--(#BD561D)--*/
+    --clr--authillustration-bg: 9 100% 82%;  /*--(#FFB1A4)--*/
+    --clr-authsubmitbtn : 7 100% 68%;  /*--(#FF725E)--*/
 
     --ff-sourcesans: 'Source Sans Pro', sans-serif;
     --ff-opensans: 'Open Sans', sans-serif;
@@ -91,6 +87,12 @@ a {
     color: hsl(var(--clr-url));
     border-bottom: 1px solid hsl(var(--clr-url));
     position: relative;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 }
 
 input,
@@ -185,8 +187,6 @@ nav { z-index: 99999; }
 .col-span-5 { grid-column: span 5; }
 .col-span-6 { grid-column: span 6; }
 
-.accent { color: hsl(var(--clr-accent)); }
-
 .btn {
     padding: 0.375em 0.75em;
     border-radius: 4px;
@@ -260,6 +260,7 @@ nav { z-index: 99999; }
 }
 
 .mx-auto { margin-inline: auto; }
+.accent { color: hsl(var(--clr-accent)); }
 
 .cursor-pointer { cursor: pointer; }
 .cursor-disabled { cursor: not-allowed; }
