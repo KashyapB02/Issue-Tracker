@@ -11,9 +11,6 @@ import {
     collection,
     getDocs,
     addDoc,
-    deleteDoc,
-    doc,
-    updateDoc,
     query,
     where
 } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-firestore.js";
@@ -26,21 +23,6 @@ const logInForm = document.getElementById("logInForm");
 const logoutBtn = document.querySelectorAll("#logoutBtn");
 const nameInput = document.getElementById("nameInput");
 
-if (nameInput) {
-    nameInput.oninput = function () {
-        const lastInput = nameInput.value;
-        const lastCharacter = lastInput.slice(-1);
-    
-        if (!((lastCharacter.charCodeAt() >= 65 && lastCharacter.charCodeAt() <= 90) ||
-            (lastCharacter.charCodeAt() >= 97 && lastCharacter.charCodeAt() <= 122) ||
-            (lastCharacter.charCodeAt() === 8) ||
-            (lastCharacter.charCodeAt() === 32))) {
-                nameInput.value = lastInput.slice(0, -1);
-                errorAlert("Invalid character input.\nOnly Alphabets & spaces are allowed for name.");
-            }
-    }
-}
-
 const setUserInDb = (userId, userName) => {
     const user = {
         uid: userId,
@@ -48,18 +30,18 @@ const setUserInDb = (userId, userName) => {
     }
 
     const q = query(userCollectionRef, where("uid", "==", userId));
-
     getDocs(q).then((snapshot) => {
         if (!snapshot.docs.length) {
             addDoc(userCollectionRef, user).then(() => {
-                console.log("User Added Successfully!");
-                window.location.replace("http://kashyap-issue-tracker.vercel.app/dashboard.html");
+                window.location.replace(`${window.location.origin}/dashboard.html`);
             }).catch((error) => {
                 console.error(error.code);
             })
         } else {
-            window.location.replace("http://kashyap-issue-tracker.vercel.app/dashboard.html");
+            window.location.replace(`${window.location.origin}/dashboard.html`);
         }
+
+        logInForm.reset();
     }).catch((error) => {
         console.error(error.code);
     })
@@ -91,7 +73,6 @@ if (signUpForm) {
                 successAlert("Verification email sent.\nDon't forget to check your spam also.")
                 const user = {
                     uid: currentUser.uid,
-                    email: currentUser.email,
                     verified: false,
                 }
 
@@ -103,15 +84,12 @@ if (signUpForm) {
 
             updateProfile(currentUser, {
                 displayName: signUpForm.nameInput.value,
-            }).then(() => {
-                console.log(currentUser);
-            }).catch((error) => {
+            }).then(() => {}).catch((error) => {
                 console.error(error.message);
             })
         }).catch((error) => {
             if (error.code === "auth/email-already-in-use") {
                 normalAlert("Account with this email is already in use.\n Try logging in using this email or Create account using a different email.")
-                signUpForm.reset();
             }
         })
     }
@@ -130,7 +108,6 @@ if (logInForm) {
             if (currentUser.emailVerified) {
                 const user = {
                     uid: currentUser.uid,
-                    email: currentUser.email,
                     verified: true,
                     currentUser: currentUser,
                 }
@@ -138,22 +115,16 @@ if (logInForm) {
                 localStorage.setItem("user", JSON.stringify(user));
                 setUserInDb(currentUser.uid, currentUser.displayName);
             } else {
-                errorAlert("User not verified.\n Please check your email for verification mail.")
-                signOut(auth, currentUser)
-                    .then(() => {
-                        console.log("User Logged Out");
-                    })
-                    .catch((error) => {
-                        console.error(error.message);
-                    })
+                normalAlert("User not verified.\n Please check your email for verification mail.")
+                signOut(auth, currentUser).then(() => {}).catch((error) => {
+                    console.error(error.message);
+                })
             }
-
-            logInForm.reset();
         }).catch((error) => {
             console.error(error.code);
             switch(error.code) {
                 case "auth/user-not-found": {
-                    errorAlert("User not found.\nPlease recheck your entered email or Register first.");
+                    errorAlert("Incorrect email or Password.\nPlease recheck your credentials or Register first.");
                     break;
                 }
 
@@ -168,17 +139,30 @@ if (logInForm) {
 
 for (let btns of logoutBtn) {
     btns.onclick = function () {
-        var user = JSON.parse(localStorage.getItem("user"));
-        if (user) {
-            signOut(auth, user.currentUser)
-            .then(() => {
-                console.log("User Logged Out");
-                localStorage.clear();
-                window.location.replace("http://kashyap-issue-tracker.vercel.app/auth/login.html")
-            })
-            .catch((error) => {
-                console.error(error.message);
-            })
-        }
+        const user = JSON.parse(localStorage.getItem("user"))
+        signOut(auth, user.currentUser).then(() => {
+            localStorage.clear();
+            window.location.replace(`${window.location.origin}/auth/login.html`)
+        }).catch((error) => {
+            console.error(error.message);
+        })
+    }
+}
+
+if (nameInput) {
+    nameInput.oninput = function () {
+        if (!nameInput.value)
+            return;
+
+        const lastInput = nameInput.value;
+        const lastCharacter = lastInput.slice(-1);
+    
+        if (!((lastCharacter.charCodeAt() >= 65 && lastCharacter.charCodeAt() <= 90) ||
+            (lastCharacter.charCodeAt() >= 97 && lastCharacter.charCodeAt() <= 122) ||
+            (lastCharacter.charCodeAt() === 8) ||
+            (lastCharacter.charCodeAt() === 32))) {
+                nameInput.value = lastInput.slice(0, -1);
+                errorAlert("Invalid character input.\nOnly Alphabets & spaces are allowed for name.");
+            }
     }
 }

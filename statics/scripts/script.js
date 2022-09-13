@@ -1,3 +1,9 @@
+const user = JSON.parse(localStorage.getItem("user"))
+if (window.location.pathname === "/dashboard.html") {
+    if (!user || !user.verified)
+        window.location.replace(`${window.location.origin}/auth/login.html`);
+}
+
 import { db } from './firebase.js'
 import {
     collection,
@@ -6,19 +12,33 @@ import {
     deleteDoc,
     doc,
     updateDoc,
+    query,
+    where
 } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-firestore.js";
+import { successAlert, errorAlert, normalAlert } from "./alert.js";
 
 const issueCollectionRef = collection(db, 'issues');
+const userCollectionRef = collection(db, 'users');
 
 const formSubmitModal = document.getElementById("main_formSubmitModal");
 const closeModalBtn = document.getElementById("closeModalBtn");
 const issueHandlerIcons = document.querySelectorAll(".issueHandlerIcons");
 const modalActionTextPara = document.getElementById("formSubmitModal_actiontext");
+const issueAssignee = document.getElementById("issue_assignee");
 
-const user = JSON.parse(localStorage.getItem("user"))
-if (window.location.pathname === "/dashboard.html") {
-    if (!(user || user.verified))
-        window.location.replace("http://kashyap-issue-tracker.vercel.app/auth/login.html");
+if (issueAssignee) {
+    const users = query(userCollectionRef, where("uid", "!=", user.uid))
+    getDocs(users).then((snapshots) => {
+        snapshots.docs.forEach((doc) => {
+            const data = doc.data()
+            issueAssignee.insertAdjacentHTML(
+                "beforeend",
+                `<option value=${data.uid}>${data.displayName}</option>`
+            )
+        })
+    }).catch((error) => {
+        console.error(error.code);
+    })
 }
 
 const setModalOpen = () => {
@@ -165,6 +185,26 @@ const formElement = document.getElementById("form-body");
 formElement.onsubmit = (e) => {
     e.preventDefault();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user) {
+        errorAlert("Cannot create issue.\n User is currently logged out");
+
+        const observer = new MutationObserver(function(mutationsList) {
+            mutationsList.forEach(function(mutation) {
+                mutation.removedNodes.forEach(function(removedNode) {
+                    if(removedNode.id == 'dialogContainer') {
+                        window.location.replace(`${window.location.origin}/auth/login.html`);
+                        observer.disconnect();
+                    }
+                });
+            });
+        });
+        observer.observe(document.body, { subtree: true, childList: true });
+
+        return;
+    }
+
     var issueTitle = document.getElementById("title_input").value;
     var issueDescription = document.getElementById("description_input").value;
     var issueSeverity = document.getElementById("severity_input").value;
@@ -178,7 +218,8 @@ formElement.onsubmit = (e) => {
         title: issueTitle,
         description: issueDescription,
         severity: issueSeverity,
-        assignee: issueAssignee
+        assignee: issueAssignee,
+        creator: user.uid,
     }
 
     addDoc(issueCollectionRef, currentIssue).then(() => {

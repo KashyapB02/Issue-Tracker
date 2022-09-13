@@ -35,7 +35,7 @@
 .navLogo p {
     font-size: var(--fs-regular);
     font-weight: var(--fw-600);
-    letter-spacing: 0.01em;
+    letter-spacing: 0.015em;
 }
 
 .nav_hamburgerContainer {
@@ -121,6 +121,7 @@
     padding: 1em;
     font-size: var(--fs-light);
     letter-spacing: 0.04em;
+    border-bottom: none;
     transition:
         background-color 200ms linear,
         color 100ms linear;
@@ -377,6 +378,7 @@ svg {
 @media (hover: hover) {
     .navItems a:hover {
         background-color: hsl(var(--clr-white));
+        color: hsl(var(--clr-navbar));
         transition:
             background-color 200ms linear,
             color 100ms linear;
@@ -438,6 +440,13 @@ svg {
     .container_issueDisplayCard_issueStatusBtn {
         margin-top: 0;
         margin-left: auto;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .navLogo p {
+        font-size: var(--fs-semibold);
+        padding-inline: 0.5em;
     }
 }
 

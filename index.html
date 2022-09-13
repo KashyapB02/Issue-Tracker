@@ -13,18 +13,19 @@
 
     <title>Issue Tracker</title>
 </head>
-<body class="main relative" id="main">
+<body class="main" id="main">
     Loading...
+
     <!-- ========== Internal Scripts ========== -->
     <script>
         const user = JSON.parse(localStorage.getItem("user"));
         if (user) {
             if (!user.verified)
-                window.location.replace("http://kashyap-issue-tracker.vercel.app/auth/login.html")
+                window.location.replace(`${window.location.origin}/auth/login.html`)
             else
-                window.location.replace("http://kashyap-issue-tracker.vercel.app/dashboard.html")
+                window.location.replace(`${window.location.origin}/dashboard.html`)
         } else
-            window.location.replace("http://kashyap-issue-tracker.vercel.app/auth/login.html")
+            window.location.replace(`${window.location.origin}/auth/login.html`)
     </script>
 </body>
 </html>

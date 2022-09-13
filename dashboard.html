@@ -93,7 +93,9 @@
             </div>
             <div class="container_form_inputGroup flex flex-col">
                 <label for="assignee_input" class="container_form_labels">Assigned To</label>
-                <input type="text" name="issue_assignee" id="assignee_input" class="container_form_inputField accent nameInput" placeholder="Name of Assignee ..." required autocomplete="off" />
+                <select name="issue_assignee" id="issue_assignee" class="container_form_inputField accent nameInput" required autocomplete="off">
+                    <option value="" selected disabled>---Select Assignee---</option>
+                </select>
             </div>
             <div class="container_form_inputGroup flex flex-col">
                 <label for="url_input" class="container_form_labels notRequired">Link to Relevent Issue (If Any)</label>

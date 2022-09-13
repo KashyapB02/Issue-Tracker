@@ -3,7 +3,7 @@ function alert (message, svg, alertType) {
 
     const dialog = `<div class="dialog fixed flex flex-col" id="dialog"></div>`
     if (!document.getElementById("dialog"))
-        document.body.insertAdjacentHTML("beforebegin", dialog);
+        document.body.insertAdjacentHTML("beforeend", dialog);
 
     const dialogDiv = document.getElementById("dialog")
     if (dialogDiv.childElementCount) {
