@@ -208,7 +208,7 @@ formElement.onsubmit = (e) => {
     var issueTitle = document.getElementById("title_input").value;
     var issueDescription = document.getElementById("description_input").value;
     var issueSeverity = document.getElementById("severity_input").value;
-    var issueAssignee = document.getElementById("assignee_input").value;
+    var issueAssignee = document.getElementById("issue_assignee").value;
     var issueLink = document.getElementById("url_input").value;
 
     var currentIssue = {
