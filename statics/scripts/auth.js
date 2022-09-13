@@ -53,12 +53,12 @@ const setUserInDb = (userId, userName) => {
         if (!snapshot.docs.length) {
             addDoc(userCollectionRef, user).then(() => {
                 console.log("User Added Successfully!");
-                window.location.replace("http://kashyap-issue-tracker.vercel.app/dashboard.html");
+                window.location.replace("http://127.0.0.1:8080/dashboard.html");
             }).catch((error) => {
                 console.error(error.code);
             })
         } else {
-            window.location.replace("http://kashyap-issue-tracker.vercel.app/dashboard.html");
+            window.location.replace("http://127.0.0.1:8080/dashboard.html");
         }
     }).catch((error) => {
         console.error(error.code);
@@ -174,7 +174,7 @@ for (let btns of logoutBtn) {
             .then(() => {
                 console.log("User Logged Out");
                 localStorage.clear();
-                window.location.replace("http://kashyap-issue-tracker.vercel.app/auth/login.html")
+                window.location.replace("http://127.0.0.1:8080/auth/login.html")
             })
             .catch((error) => {
                 console.error(error.message);

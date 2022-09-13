@@ -276,14 +276,14 @@ nav { z-index: 99999; }
 
 .dialog {
     top: 1.5rem;
-    right: 2rem;
+    right: 0.5rem;
     z-index: 999;
     gap: 1rem;
 }
 
 .dialogContainer {
     background-color: hsl(var(--clr-white));
-    width: 350px;
+    width: 280px;
     padding: 1rem;
     border-radius: 6px;
     box-shadow: 0 3px 9px rgb(0 0 0 / 10%), 0 3px 3px rgb(0 0 0 / 10%);
@@ -429,17 +429,24 @@ nav { z-index: 99999; }
 
 
 @media screen and (min-width: 400px) { a { width: max-content; } }
-@media screen and (min-width: 450px) {}
-@media screen and (min-width: 540px) {}
-@media screen and (min-width: 768px) {}
-@media screen and (min-width: 1024px) {}
-@media screen and (min-width: 1280px) {}
+
+@media screen and (min-width: 450px) {
+    .dialog { right: 1.5rem; }
+    .dialogContainer { width: 350px; }
+}
+
+@media screen and (min-width: 768px) { .dialog { right: 1.5rem; }}
+
 @media screen and (min-width: 1500px) {
     html { font-size: 120%; }
+    .dialogContainer { width: 400px; }
 }
+
 @media screen and (min-width: 1920px) {
     html { font-size: 135%; }
+    .dialogContainer { width: 450px; }
 }
+
 @media screen and (min-width: 2500px) {
     html { font-size: 180%; }
 }

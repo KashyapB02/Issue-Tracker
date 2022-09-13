@@ -20,11 +20,11 @@
         const user = JSON.parse(localStorage.getItem("user"));
         if (user) {
             if (!user.verified)
-                window.location.replace("http://kashyap-issue-tracker.vercel.app/auth/login.html")
+                window.location.replace("http://127.0.0.1:8080/auth/login.html")
             else
-                window.location.replace("http://kashyap-issue-tracker.vercel.app/dashboard.html")
+                window.location.replace("http://127.0.0.1:8080/dashboard.html")
         } else
-            window.location.replace("http://kashyap-issue-tracker.vercel.app/auth/login.html")
+            window.location.replace("http://127.0.0.1:8080/auth/login.html")
     </script>
 </body>
 </html>
