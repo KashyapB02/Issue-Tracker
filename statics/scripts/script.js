@@ -18,7 +18,7 @@ const modalActionTextPara = document.getElementById("formSubmitModal_actiontext"
 const user = JSON.parse(localStorage.getItem("user"))
 if (window.location.pathname === "/dashboard.html") {
     if (!(user || user.verified))
-        window.location.replace("http://127.0.0.1:8080/auth/login.html");
+        window.location.replace("http://kashyap-issue-tracker.vercel.app/auth/login.html");
 }
 
 const setModalOpen = () => {
