@@ -5,15 +5,21 @@ import {
     addDoc,
     deleteDoc,
     doc,
-    updateDoc
+    updateDoc,
 } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-firestore.js";
 
-const collectionRef = collection(db, 'issues');
+const issueCollectionRef = collection(db, 'issues');
 
 const formSubmitModal = document.getElementById("main_formSubmitModal");
 const closeModalBtn = document.getElementById("closeModalBtn");
 const issueHandlerIcons = document.querySelectorAll(".issueHandlerIcons");
 const modalActionTextPara = document.getElementById("formSubmitModal_actiontext");
+
+const user = JSON.parse(localStorage.getItem("user"))
+if (window.location.pathname === "/dashboard.html") {
+    if (!(user || user.verified))
+        window.location.replace("http://kashyap-issue-tracker.vercel.app/auth/login.html");
+}
 
 const setModalOpen = () => {
     formSubmitModal.classList.add("modal--open");
@@ -133,7 +139,7 @@ const displayIssueList = (issueList) => {
 }
 
 const fetchIssues = () => {
-    getDocs(collectionRef).then((snapshot) => {
+    getDocs(issueCollectionRef).then((snapshot) => {
         var issueList = []
         snapshot.docs.forEach((doc) => {
             issueList.push({...doc.data(), docId: doc.id});
@@ -175,7 +181,7 @@ formElement.onsubmit = (e) => {
         assignee: issueAssignee
     }
 
-    addDoc(collectionRef, currentIssue).then(() => {
+    addDoc(issueCollectionRef, currentIssue).then(() => {
         formElement.reset();
 
         (document.getElementById("addedIssue")).classList.add("active");

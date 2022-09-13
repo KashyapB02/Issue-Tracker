@@ -25,6 +25,7 @@
     --clr-accent: 0 0% 20%;  /*--(#333333)--*/
     --clr-body-bg: 0 0% 96%;  /*--(#FDFDFD)--*/
     --clr-form-bg: 0 0% 93%;  /*--(#EEEEEE)--*/
+    --clr-navbar: 204 96% 30%;  /* --(#035B96)-- */
     --clr-url: 217 84% 42%;  /*--(#1158C7)--*/
     --clr-input-text: 0 0% 33%; /*--(#555555)--*/
     --clr-input-border: 0 0% 80%;  /*--(#CCCCCC)--*/
@@ -40,8 +41,11 @@
     --clr-medissue: 41 72% 48%;  /*--(#D29922)--*/
     --clr-hardissue: 40 96% 32%;  /*--(#9E6A03)--*/
     --clr-severeissue: 21 73% 43%;  /*--(#BD561D)--*/
-    --clr--authillustration-bg: 9 100% 82%;  /*--(#FFB1A4)--*/
+    --clr-authillustration-bg: 9 100% 82%;  /*--(#FFB1A4)--*/
     --clr-authsubmitbtn : 7 100% 68%;  /*--(#FF725E)--*/
+    --clr-success-alert: 108 62% 55%;  /*--(#61D345)--*/
+    --clr-error-alert: 0 100% 65%;  /*--(#FF4B4B)--*/
+    --clr-normal-alert: 265 86% 47%;  /*--(#6611DD)--*/
 
     --ff-sourcesans: 'Source Sans Pro', sans-serif;
     --ff-opensans: 'Open Sans', sans-serif;
@@ -66,8 +70,12 @@ body {
     background-color: hsl(var(--clr-body-bg));
     display: block;
     text-rendering: optimizeSpeed;
-    overflow: auto;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
+::-webkit-scrollbar { display: none; }
 
 html,
 html:focus-within {
@@ -89,10 +97,17 @@ a {
     position: relative;
 }
 
-img {
+ul,
+ol {
+    list-style-type: none;
+}
+
+img,
+svg {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
+    cursor: pointer;
 }
 
 input,
@@ -257,6 +272,84 @@ nav { z-index: 99999; }
 .sever-issue { color: hsl(var(--clr-severeissue)); }
 .sever-issue .container_issueDisplayCard_issueLevelMarker {
     background-color: hsl(var(--clr-severeissue));
+}
+
+.dialog {
+    top: 1.5rem;
+    right: 2rem;
+    z-index: 999;
+    gap: 1rem;
+}
+
+.dialogContainer {
+    background-color: hsl(var(--clr-white));
+    width: 350px;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 3px 9px rgb(0 0 0 / 10%), 0 3px 3px rgb(0 0 0 / 10%);
+}
+
+.dialogContent {
+    gap: 0.35rem;
+}
+
+.dialogTypeIcon {
+    width: max-content;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+}
+
+.dialogTypeIcon svg {
+    aspect-ratio: 1;
+    width: 1.2rem;
+    -moz-animation: zoom-in-out 750ms linear infinite;
+    -webkit-animation: zoom-in-out 750ms linear infinite;
+    animation: zoom-in-out 750ms linear infinite;
+}
+
+.dialogActive {
+    -moz-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -moz-animation: alert-in 300ms linear;
+    -webkit-animation: alert-in 300ms linear;
+    animation: alert-in 300ms linear;
+}
+
+.dialogClose {
+    -moz-transform: translateX(110%);
+    -webkit-transform: translateX(110%);
+    transform: translateX(110%);
+    -moz-animation: alert-out 150ms linear;
+    -webkit-animation: alert-out 150ms linear;
+    animation: alert-out 150ms linear;
+}
+
+.successAlert svg { fill: hsl(var(--clr-success-alert)); }
+.errorAlert svg { fill: hsl(var(--clr-error-alert)); }
+.normalAlert svg { fill: hsl(var(--clr-normal-alert)); }
+
+.dialogMsg {
+    font-weight: var(--fw-600);
+    color: hsl(var(--clr-accent));
+    font-size: var(--fs-light);
+}
+
+.dialogeCloseBtn {
+    top: 0.1rem;
+    right: 0.3rem;
+    display: grid;
+    place-content: center;
+    aspect-ratio: 3/2;
+    width: 1.5rem;
+    cursor: pointer;
+}
+
+.dialogeCloseBtn p {
+    background-color: hsl(var(--clr-accent));
+    width: 1.25rem;
+    height: 4px;
 }
 
 .mx-auto { margin-inline: auto; }
